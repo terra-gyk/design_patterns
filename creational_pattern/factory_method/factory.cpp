@@ -1,28 +1,21 @@
 #include <cstdio>
- 
-template <class Derived>
-struct Base
+
+enum class Color { Red, Green, Blue };
+enum class Size { Small, Medium, Large };
+
+template <typename T> 
+struct Specification
 {
-  void name() 
-  { 
-    (static_cast<Derived*>(this))->impl(); 
-  }
-protected:
-  Base() = default; // 禁止创建 Base 对象，这是 UB
+  virtual bool is_satisfied(T* item) = 0;
 };
 
-struct D1 : public Base<D1> 
+template <typename T> struct Filter
 {
-  void impl() { std::puts("D1::impl()"); } 
-};
-
-struct D2 : public Base<D2> 
-{ 
-  void impl() { std::puts("D2::impl()"); } 
+  virtual vector<T*> filter(vector<T*> items,
+                            Specification<T>& spec ) = 0;
 };
 
 int main()
 {
-  D1 d1; d1.name();
-  D2 d2; d2.name();
+
 }
