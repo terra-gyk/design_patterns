@@ -4,7 +4,7 @@ CXX := g++
 CXXFLAGS := -Wall -std=c++20
 
 # 定义目标
-TARGET := program
+TARGET := test
 
 # 查找源文件
 SRCS := $(wildcard *.cpp)
