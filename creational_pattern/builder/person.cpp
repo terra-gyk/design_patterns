@@ -10,12 +10,12 @@ person_builder person::create()
 
 std::ostream& operator<<(std::ostream& output, const person& person)
 {
-  std::cout << "          city : " << person.city_ << "\n";
-  std::cout << "street_address : " << person.street_address_ << "\n";
-  std::cout << "     post_code : " << person.post_code_ << "\n";
+  output << "          city : " << person.city_ << "\n";
+  output << "street_address : " << person.street_address_ << "\n";
+  output << "     post_code : " << person.post_code_ << "\n";
 
-  std::cout << "  company_name : " << person.company_name_ << "\n";
-  std::cout << "      position : " << person.position_ << "\n";
-  std::cout << " annual_income : " << person.annual_income_ << "\n";
+  output << "  company_name : " << person.company_name_ << "\n";
+  output << "      position : " << person.position_ << "\n";
+  output << " annual_income : " << person.annual_income_ << "\n";
   return output;
 }

@@ -11,9 +11,7 @@ public:
   person() {}
 
   static person_builder create(); 
-
   friend std::ostream& operator<<(std::ostream& output, const person& person);
-
 private:
   friend class person_builder;
   friend class person_address_builder;
