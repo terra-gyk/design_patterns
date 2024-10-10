@@ -30,7 +30,7 @@ public:
   std::string get_name() override { return "product c"; } 
 private:
   int         age_;
-  std::string data_;
+  std::string name_;
 };
 
 #endif // __PRODUCT_H__
