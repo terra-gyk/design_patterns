@@ -3,10 +3,12 @@
 
 #include "person.h"
 
+// 提供各部分的构造
 class person_address_builder;
 class person_job_builder;
 
-class person_builder_base // 存储对象的引用
+// 存储对象的引用
+class person_builder_base 
 {
 public:
   // 类型转换运算符
@@ -15,7 +17,7 @@ public:
     return std::move(person_);
   }
 
-  // builder facets
+  // builder 的两个部分
   person_address_builder lives() const;
   person_job_builder works() const;
 
@@ -24,6 +26,7 @@ protected:
   explicit person_builder_base(person& person): person_{ person }{}
 };
 
+// 存储对象德实体
 class person_builder : public person_builder_base
 {
 public:
