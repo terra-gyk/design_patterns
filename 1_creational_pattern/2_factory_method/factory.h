@@ -39,6 +39,17 @@ public:
       return nullptr;
     }
   }
+
+  // 或者同一个产品的不同参数构造
+  product_ptr create_product_c_by_age(int age)
+  {
+    return std::make_unique<concrete_product_c>(age);
+  }
+
+  product_ptr create_product_c_by_name(std::string name)
+  {
+    return std::make_unique<concrete_product_c>(name);
+  }
 };
 
 

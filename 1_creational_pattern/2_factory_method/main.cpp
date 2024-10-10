@@ -25,5 +25,11 @@ int main()
 
   auto product_b_1 = creator.create_product(product_type::B);
   std::cout << product_b_1->get_name() << std::endl;
+
+  auto product_c_1 = creator.create_product_c_by_age(25);
+  std::cout << product_c_1->get_name() << std::endl;
+
+  auto product_c_2 = creator.create_product_c_by_name("terra");
+  std::cout << product_c_1->get_name() << std::endl;
   return 0;
 }

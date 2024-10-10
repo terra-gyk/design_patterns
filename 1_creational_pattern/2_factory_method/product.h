@@ -1,7 +1,7 @@
 #ifndef __PRODUCT_H__
 #define __PRODUCT_H__
 
-#include <string>
+#include <iostream>
 
 class product 
 {
@@ -25,10 +25,12 @@ public:
 class concrete_product_c : public product
 {
 public:
-  concrete_product_c(){};
+  concrete_product_c(int age){ std::cout << "construct by age\n";};
+  concrete_product_c(std::string name){std::cout << "construct by name\n";};
   std::string get_name() override { return "product c"; } 
 private:
-  std::string name_;
+  int         age_;
+  std::string data_;
 };
 
 #endif // __PRODUCT_H__
