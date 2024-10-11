@@ -48,8 +48,8 @@ int main()
   std::cout << product_c_1->get_name() << std::endl;
 
   auto factory = std::make_unique<drink_factory>();
-
-  auto drink = factory->make_drink("milk");
+  auto drink_tea = factory->make_drink("tea");
+  auto drink_coffee = factory->make_drink("coffee");
 
   return 0;
 }
