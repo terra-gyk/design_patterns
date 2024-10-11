@@ -1,3 +1,6 @@
+#ifndef __ABSTRACT_FACTORY_H__
+#define __ABSTRACT_FACTORY_H__
+
 #include <iostream>
 #include <memory>
 #include <map>
@@ -118,3 +121,6 @@ public:
 private:
   std::map<std::string, std::function<std::unique_ptr<hot_drink>()>> factories_;
 };
+
+
+#endif // __ABSTRACT_FACTORY_H__
