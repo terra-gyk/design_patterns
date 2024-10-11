@@ -52,5 +52,4 @@ public:
   }
 };
 
-
 #endif // __FACTORY_H__
