@@ -1,6 +1,7 @@
 #include <iostream>
 #include <memory>
 #include <map>
+#include <functional>
 
 class hot_drink
 {
@@ -55,18 +56,18 @@ class drink_factory
 public:
   drink_factory()
   {
-    hot_factories_["tea"] = std::make_unique<tea_factory>();
-    hot_factories_["coffee"] = std::make_unique<coffee_factory>();
+    factories_["tea"] = std::make_unique<tea_factory>();
+    factories_["coffee"] = std::make_unique<coffee_factory>();
   }
 
   std::unique_ptr<hot_drink> make_drink(const std::string& name)
   {
     std::unique_ptr<hot_drink> drink = nullptr;
-    auto factory = hot_factories_.find(name);
-    if( factory != hot_factories_.end() )
+    auto factory = factories_.find(name);
+    if( factory != factories_.end() )
     {
-      drink = hot_factories_[name]->make();
-      drink->prepare(200); // oops! 
+      drink = factories_[name]->make();
+      drink->prepare(200); 
     }
     else
     {
@@ -76,5 +77,44 @@ public:
   }
 
 private:
-  std::map<std::string, std::unique_ptr<hot_drink_factory>> hot_factories_;
+  std::map<std::string, std::unique_ptr<hot_drink_factory>> factories_;
+};
+
+
+// 或者这么写
+class drink_factory_with_wait 
+{
+public:
+  drink_factory_with_wait()
+  {
+    factories_["tea"] = []
+    {
+      auto hot_tea = std::make_unique<tea>();
+      hot_tea->prepare(200);
+      return hot_tea;
+    };
+    factories_["coffee"] = []
+    {
+      auto hot_coffee = std::make_unique<coffee>();
+      hot_coffee->prepare(200);
+      return hot_coffee;
+    };
+  }
+
+  inline std::unique_ptr<hot_drink> make_drink(const std::string& name)
+  {
+    std::unique_ptr<hot_drink> drink = nullptr;
+    auto factory = factories_.find(name);
+    if( factory != factories_.end() )
+    {
+      drink = factory->second();
+    }
+    else
+    {
+      std::cout << "unkonw drink\n";
+    }
+    return drink; 
+  }
+private:
+  std::map<std::string, std::function<std::unique_ptr<hot_drink>()>> factories_;
 };

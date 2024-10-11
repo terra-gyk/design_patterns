@@ -51,5 +51,9 @@ int main()
   auto drink_tea = factory->make_drink("tea");
   auto drink_coffee = factory->make_drink("coffee");
 
+  auto factory1 = drink_factory_with_wait();
+  auto drink_tea_1 = factory1.make_drink("tea");
+  auto drink_coffee_1 = factory1.make_drink("coffee");
+  
   return 0;
 }
