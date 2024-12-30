@@ -29,14 +29,14 @@ public:
   {
     switch (type)
     {
-    case product_type::A:
-      return std::make_unique<concrete_product_a>();
-      break;
-    case product_type::B:
-      return std::make_unique<concrete_product_b>();
-      break;
-    default:
-      return nullptr;
+      case product_type::A:
+        return std::make_unique<concrete_product_a>();
+        break;
+      case product_type::B:
+        return std::make_unique<concrete_product_b>();
+        break;
+      default:
+        return nullptr;
     }
   }
 
