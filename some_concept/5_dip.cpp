@@ -13,13 +13,13 @@ using std::endl;
 
 
 // 抽象接口
-class ILogger {
+class i_logger {
 public:
     virtual void Log(const string& message) = 0;
 };
 
 // 具体实现
-class ConsoleLogger : public ILogger {
+class console_logger : public i_logger {
 public:
     void Log(const string& message) override {
         cout << message << endl;
@@ -27,23 +27,23 @@ public:
 };
 
 // 高层模块
-class Application {
+class application {
 private:
-    ILogger* logger;
+    i_logger* logger;
 
 public:
-    Application(ILogger* logger) : logger(logger) {}
+    application(i_logger* logger) : logger(logger) {}
 
-    void Run() {
+    void run() {
         // 应用程序运行逻辑
-        logger->Log("Application is running.");
+        logger->Log("application is running.");
     }
 };
 
 int main() {
-    ILogger* logger = new ConsoleLogger();
-    Application app(logger);
-    app.Run();
+    i_logger* logger = new console_logger();
+    application app(logger);
+    app.run();
     delete logger;
     return 0;
 }

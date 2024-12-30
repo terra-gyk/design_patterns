@@ -12,49 +12,49 @@ using std::vector;
 using std::cout;
 using std::endl;
 
-class Document;
+class document;
 
 // 从设计上来说，不一定所有的机器都有如下的三个功能
-struct IMachine
+struct i_machine
 {
-  virtual void print(vector<Document*> docs) = 0;
-  virtual void fax(vector<Document*> docs) = 0;
-  virtual void scan(vector<Document*> docs) = 0;
+  virtual void print(vector<document*> docs) = 0;
+  virtual void fax(vector<document*> docs) = 0;
+  virtual void scan(vector<document*> docs) = 0;
 };
 
 // 因此可以拆分成如下
-struct IPrinter
+struct i_printer
 {
-  virtual void print(vector<Document*> docs) = 0;
+  virtual void print(vector<document*> docs) = 0;
 };
 
-struct IScanner
+struct i_scanner
 {
-  virtual void scan(vector<Document*> docs) = 0;
+  virtual void scan(vector<document*> docs) = 0;
 };
 
 // 通过继承来获取需要的方法
-struct IMachine : IPrinter, IScanner /* IFax and so on */
+struct i_machine : i_printer, i_scanner /* IFax and so on */
 {  
 };
 
-struct Machine : IMachine
+struct machine : i_machine
 {
-	IPrinter& printer;
-	IScanner& scanner;
+	i_printer& printer;
+	i_scanner& scanner;
 	
-	Machine(IPrinter& printer, IScanner& scanner)
+	machine(i_printer& printer, i_scanner& scanner)
 		: printer{printer},
 		  scanner{scanner}
 	{
 	}
 	
-	void print(vector<Document*> docs) override
+	void print(vector<document*> docs) override
 	{
 		printer.print(docs);
 	}
 	
-	void scan(vector<Document*> docs) override
+	void scan(vector<document*> docs) override
 	{
 		scanner.scan(docs);
 	}

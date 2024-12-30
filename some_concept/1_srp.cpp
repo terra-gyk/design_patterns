@@ -12,19 +12,19 @@ using std::vector;
 using std::ofstream;
 using std::endl;
 
-// Journal 的职责是保存日志
-struct Journal
+// journal 的职责是保存日志
+struct journal
 {
   string title;
   vector<string> entries;
-  explicit Journal(const std::string& title) : title{title} {}
-  void Journal::add(const string& entry){entries.push_back(entry);}
+  explicit journal(const std::string& title) : title{title} {}
+  void journal::add(const string& entry){entries.push_back(entry);}
 };
 
 // PersistenceManager 的职责是将保存的条目写入文件，持久化存储
-struct PersistenceManager
+struct persistence_manager
 {
-  static void save(const Journal& j, const string& filename)
+  static void save(const journal& j, const string& filename)
   {
     ofstream ofs(filename);
     for (auto& s: j.entries)

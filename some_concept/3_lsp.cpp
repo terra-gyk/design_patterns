@@ -13,21 +13,21 @@
 
 #include <iostream>
 
-class Rectangle {
+class rectangle {
 public:
-  virtual void setWidth(int w) {
+  virtual void set_width(int w) {
     width = w;
   }
   
-  virtual void setHeight(int h) {
+  virtual void set_height(int h) {
     height = h;
   }
   
-  int getWidth() const {
+  int get_width() const {
     return width;
   }
   
-  int getHeight() const {
+  int get_height() const {
     return height;
   }
   
@@ -40,28 +40,28 @@ protected:
   int height;
 };
 
-class Square : public Rectangle {
+class square : public rectangle {
 public:
-  void setWidth(int w) override {
+  void set_width(int w) override {
     width = height = w; // Square的宽和高是相等的
   }
   
-  void setHeight(int h) override {
+  void set_height(int h) override {
     width = height = h; // Square的宽和高是相等的
   }
 };
 
 int main() {
-  Rectangle* r = new Rectangle();
-  r->setWidth(5);
-  r->setHeight(10);
-  std::cout << "Rectangle area: " << r->area() << std::endl;
+  rectangle* r = new rectangle();
+  r->set_width(5);
+  r->set_height(10);
+  std::cout << "rectangle area: " << r->area() << std::endl;
   
   // 使用Square替换Rectangle
-  r = new Square();
-  r->setWidth(5); // 设置宽度
+  r = new square();
+  r->set_width(5); // 设置宽度
   // 这里违反了里氏替换原则，因为setWidth实际上也改变了高度，
-  std::cout << "Square area (should be 50, but...): " << r->area() << std::endl;
+  std::cout << "square area (should be 50, but...): " << r->area() << std::endl;
   
   return 0;
 }

@@ -9,19 +9,19 @@
 #include <cstdio>
 
 
-template <class Derived>
-struct Base
+template <class derived>
+struct base
 {
-  void name() { static_cast<Derived*>(this)->impl(); }
+  void name() { static_cast<derived*>(this)->impl(); }
 protected:
-  Base() = default; // prohibits the creation of Base objects, which is UB
+  base() = default; // prohibits the creation of base objects, which is Ub
 };
 
-struct D1 : public Base<D1> { void impl() { std::puts("D1::impl()"); } };
-struct D2 : public Base<D2> { void impl() { std::puts("D2::impl()"); } };
+struct d1 : public base<d1> { void impl() { std::puts("d1::impl()"); } };
+struct d2 : public base<d2> { void impl() { std::puts("d2::impl()"); } };
  
 int main()
 {
-  D1 d1; d1.name();
-  D2 d2; d2.name();
+  d1 d1; d1.name();
+  d2 d2; d2.name();
 }
