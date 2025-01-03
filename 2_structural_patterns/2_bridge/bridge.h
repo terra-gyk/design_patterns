@@ -1,5 +1,5 @@
-#ifndef  __BRIDGE_H__
-#define  __BRIDGE_H__
+#ifndef __BRIDGE_H__
+#define __BRIDGE_H__
 
 #include <iostream>
 #include <string>
