@@ -4,82 +4,77 @@
 #include <iostream>
 #include <list>
 #include <memory>
+#include <exception>
 
-class company
+class t_exception : public std::exception 
 {
 public:
-  company(std::string name):name_(name){}
-  using company_ptr = std::shared_ptr<company>;
-          
-	virtual void add(company_ptr node) = 0;            // 增加一个部门
-	virtual void remove(company_ptr node) = 0;         // 移除一个部门 
-  virtual void set_parent(company_ptr node) = 0;     // 设置父级组织
+  t_exception(const std::string& msg) : message(msg) {}
 
-  virtual std::string display() = 0;                 // 当前公司 / 部门 / 员工的名称
-
-  std::string get_name() const {return name_; }      // 获取名称
-	std::list<company_ptr> get_child() const           // 获取公司下属部门
+  const char* what() const noexcept override 
   {
-    return child_;
-  };  
-
-protected:
-  company_ptr parent_;
-  std::string name_;
-  std::list<company_ptr> child_;
+    return message.c_str();
+  }
+private:
+  std::string message;
 };
 
-class company_a : public company
+class compoent
 {
 public:
-  company_a(std::string name): company(name){}
-
-  void add(company_ptr node) override
-  {
-    child_.push_back(node);
-  }
-
-  void remove(company_ptr node) override
-  {
-    child_.remove(node);
-  }
-
-  std::string display() override
-  {
-    return parent_ ? parent_->display() + "/" + name_ : name_;
-  }
+  virtual void add(std::shared_ptr<compoent> node) = 0;
+  virtual void remove(std::shared_ptr<compoent> node) = 0;
+  virtual void display(int depth) = 0;
 };
 
-class department : public company
+class employee : public compoent 
 {
 public:
-  department(std::string name): company(name){}
+  employee(std::string name, std::string position):name_(name),position_(position){}
 
-  void add(company_ptr node) override
+  void add(std::shared_ptr<compoent> node) override 
   {
-    child_.push_back(node);
+    throw t_exception("employee not allow add");
+  };
+  void remove(std::shared_ptr<compoent> node) override {};
+
+  void display(int depth) override
+  {
+    std::cout << std::string(depth * 2, ' ') << name_ << "(" << position_ << ")" << std::endl; 
   }
 
-  void remove(company_ptr node) override
-  {
-    child_.remove(node);
-  }
+private:
+  std::string   name_;
+  std::string   position_;
 };
 
-class employ : public company
+class organization_unit : public compoent
 {
 public:
-  employ(std::string name): company(name){}
+  organization_unit(std::string name) : name_(name){}
 
-  void add(company_ptr node) override
+  void add(std::shared_ptr<compoent> node) override
   {
-    child_.push_back(node);
+    childs_.push_back(node);
   }
 
-  void remove(company_ptr node) override
+  void remove(std::shared_ptr<compoent> node) override
   {
-    child_.remove(node);
+    childs_.remove(node);
   }
+
+  void display(int depth) override
+  {
+    std::cout << std::string(depth * 2, ' ') << name_ << std::endl;
+    for(auto node : childs_) 
+    {
+      node->display(depth + 1);
+    }
+  }
+
+private:
+  std::string                                 name_;
+  std::list<std::shared_ptr<compoent>>        childs_;
 };
 
 
