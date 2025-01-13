@@ -1,5 +1,5 @@
-#ifndef  __FLYWEIGHT_H__
-#define  __FLYWEIGHT_H__
+#ifndef __FLYWEIGHT_H__
+#define __FLYWEIGHT_H__
 
 #include <iostream>
 #include <string>
