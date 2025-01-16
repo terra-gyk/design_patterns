@@ -10,7 +10,7 @@ int main()
 {
   int num[10] = {1,2,3,4,5,6,7,8,9,10};
   container<int,3> arr{num};
-  container<int>::iterator ii = arr.begin();
+  container<int,3>::iterator ii = arr.begin();
 
   for( ; ii != arr.end(); ii++)
   {
