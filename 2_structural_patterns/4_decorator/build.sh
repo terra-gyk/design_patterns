@@ -10,4 +10,4 @@ HEADER_FILES=$(find . -type f -name "*.h")
 
 echo ${CPP_FILES}
 
-g++ -std=c++20 -g  -Wall -Werror ${CPP_FILES} -o test && ./test
+g++ -std=c++20 -g -Wall -Werror ${CPP_FILES} -o test && ./test
