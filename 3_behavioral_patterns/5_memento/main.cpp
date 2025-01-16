@@ -14,9 +14,14 @@ int main()
   caretaker_1->backup();
   originator_1->do_some();
   caretaker_1->backup();
-
+  originator_1->do_some();
+  caretaker_1->backup();
+  originator_1->do_some();
+  caretaker_1->backup();
   caretaker_1->show_history();
 
+  caretaker_1->undo();
+  caretaker_1->show_history();
   caretaker_1->undo();
   caretaker_1->show_history();
   return 0;

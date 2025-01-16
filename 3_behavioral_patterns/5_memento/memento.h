@@ -26,9 +26,9 @@ public:
     this->date_.resize(this->date_.size() -1);
   }
 
-  std::string state() const override {return state_;}
-  std::string date() const override {return date_;}
-  std::string get_record() const override { return date_ + " : " + state_;}
+  std::string state() const override {return this->state_;}
+  std::string date() const override {return this->date_;}
+  std::string get_record() const override { return this->date_ + " : " + this->state_;}
 
 private:
   std::string state_;
@@ -40,12 +40,13 @@ class originator
 public:
   originator() : state_( generate_random_string(30) ) 
   {
-    std::cout << "originator state is " << state_ << "\n";
+    std::cout << "originator state is " << this->state_ << "\n";
   } 
   
   void do_some()
   {
-    std::cout << "originator change state to " << state_ << "\n";
+    this->state_ = generate_random_string(30);
+    std::cout << "originator change state to " << this->state_ << "\n";
   }
 
   std::shared_ptr<memento> save()
@@ -81,20 +82,20 @@ public:
   void backup()
   {
     std::cout << "save state. \n";
-    histories_.push_back(originator_->save());
+    this->histories_.push_back(this->originator_->save());
   }
 
   void undo()
   {
-    if( histories_.empty() )
+    if( this->histories_.empty() )
     {
       return ;
     }
-    auto bak = histories_.back();
-    histories_.pop_back();
+    auto bak = this->histories_.back();
+    this->histories_.pop_back();
     try 
     {
-      originator_->restore(bak);
+      this->originator_->restore(bak);
     } 
     catch (...) 
     {
@@ -104,7 +105,8 @@ public:
 
   void show_history()
   {
-    for(auto node : histories_)
+    std::cout << "show history: \n";
+    for(auto node : this->histories_)
     {
       std::cout << node->get_record() << "\n";
     }
