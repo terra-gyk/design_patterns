@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <atomic>
+#include <mutex>
 
 class static_cpp11 {
  protected:

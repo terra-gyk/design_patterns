@@ -1,16 +1,7 @@
 #ifndef  __ITERATOR_H__
 #define  __ITERATOR_H__
 
-/**
- * Iterator Design Pattern
- *
- * Intent: Lets you traverse elements of a collection without exposing its
- * underlying representation (list, stack, tree, etc.).
- */
-
 #include <iostream>
-#include <string>
-#include <vector>
 
 template<typename P>
 class base_iterator
