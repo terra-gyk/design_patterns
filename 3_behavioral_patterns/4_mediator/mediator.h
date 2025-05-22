@@ -59,7 +59,12 @@ public:
 class sample_mediator : public mediator
 {
 public:
-  sample_mediator(std::shared_ptr<component_a> a, std::shared_ptr<component_b> b):component_a_(a),component_b_(b){}
+  sample_mediator(std::shared_ptr<component_a> a, std::shared_ptr<component_b> b)
+    : component_a_(a),
+      component_b_(b)
+  {
+  }
+
   void notify(mediator_event event)
   {
     switch (event) 

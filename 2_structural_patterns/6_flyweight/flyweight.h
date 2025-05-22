@@ -15,7 +15,11 @@
 class car_shared_part
 {
 public:
-  car_shared_part(std::string engine, std::string wheel): engine_(engine),wheel_(wheel){}
+  car_shared_part(std::string engine, std::string wheel)
+    : engine_(engine),
+      wheel_(wheel)
+  {
+  }
 
   friend std::ostream &operator<<(std::ostream &out,std::shared_ptr<car_shared_part> &car)
   {
@@ -30,7 +34,11 @@ private:
 class car_unique_part
 {
 public:
-  car_unique_part(std::string owner, std::string number): owner_(owner),number_(number){}
+  car_unique_part(std::string owner, std::string number)
+    : owner_(owner),
+      number_(number)
+  {
+  }
 
   friend std::ostream &operator<<(std::ostream &out,std::shared_ptr<car_unique_part> car)
   {
@@ -45,7 +53,10 @@ private:
 class car 
 {
 public:
-  car(std::string owner,std::string number):unique_part_(std::make_shared<car_unique_part>(owner,number)){}
+  car(std::string owner,std::string number)
+    : unique_part_(std::make_shared<car_unique_part>(owner,number))
+  {
+  }
 
   void set_shared_part(std::shared_ptr<car_shared_part> shared_part)
   {

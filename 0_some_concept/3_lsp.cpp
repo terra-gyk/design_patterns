@@ -15,43 +15,34 @@
 
 class rectangle {
 public:
-  virtual void set_width(int w) {
-    width = w;
-  }
+  virtual void set_width(int w) { width = w; }
+  virtual void set_height(int h) { height = h; }
   
-  virtual void set_height(int h) {
-    height = h;
-  }
-  
-  int get_width() const {
-    return width;
-  }
-  
-  int get_height() const {
-    return height;
-  }
-  
-  int area() const {
-    return width * height;
-  }
+  int get_width() const { return width; }
+  int get_height() const { return height; }
+  int area() const { return width * height; }
   
 protected:
   int width;
   int height;
 };
 
-class square : public rectangle {
+class square : public rectangle 
+{
 public:
-  void set_width(int w) override {
+  void set_width(int w) override 
+  {
     width = height = w; // Square的宽和高是相等的
   }
   
-  void set_height(int h) override {
+  void set_height(int h) override 
+  {
     width = height = h; // Square的宽和高是相等的
   }
 };
 
-int main() {
+int main() 
+{
   rectangle* r = new rectangle();
   r->set_width(5);
   r->set_height(10);

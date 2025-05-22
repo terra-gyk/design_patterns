@@ -6,7 +6,10 @@
 class person_job_builder : public person_builder_base
 {
 public:
-  explicit person_job_builder(person& person) : person_builder_base{person}{}
+  explicit person_job_builder(person& person) 
+    : person_builder_base{person}
+  {
+  }
 
   person_job_builder& at(std::string company_name);
   person_job_builder& as_a(std::string position);

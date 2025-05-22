@@ -8,8 +8,6 @@ class person_builder;
 class person 
 {
 public:
-  person() {}
-
   static person_builder create(); 
   friend std::ostream& operator<<(std::ostream& output, const person& person);
 private:

@@ -40,8 +40,10 @@ struct color_specification : specification<product>
 {
 	Color color;
 	
-	explicit color_specification(const Color color) :
-    color{color} {}
+	explicit color_specification(const Color color) 
+    : color{color} 
+  {
+  }
 	
 	bool is_satisfied(product* item) override {
 		return item->color == color;
@@ -62,8 +64,12 @@ struct better_filter : filter<product>
 	{
 		vector<product*> result;
 		for (auto& p : items)
+    {
 			if (spec.is_satisfied(p))
+      {
 				result.push_back(p);
+      }
+    }
 		return result;
 	}
 };

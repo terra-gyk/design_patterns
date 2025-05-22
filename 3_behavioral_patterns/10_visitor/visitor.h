@@ -19,6 +19,7 @@ class component
 {
 public:
   virtual ~component(){}
+
   virtual void accept(std::shared_ptr<visitor> visitor) = 0;
 };
 

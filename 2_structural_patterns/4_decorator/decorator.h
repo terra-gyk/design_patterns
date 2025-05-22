@@ -28,7 +28,10 @@ private:
 class fly_hero : public hero
 {
 public:
-  fly_hero(std::shared_ptr<hero> hero) : base_hero_(hero) {}
+  fly_hero(std::shared_ptr<hero> hero) 
+    : base_hero_(hero) 
+  {
+  }
   void show_skill() override 
   {
     base_hero_->show_skill();
@@ -47,7 +50,11 @@ private:
 class laser_hero : public hero
 {
 public:
-  laser_hero(std::shared_ptr<hero> hero) : base_hero_(hero) {}
+  laser_hero(std::shared_ptr<hero> hero) 
+    : base_hero_(hero) 
+  {
+  }
+  
   void show_skill() override 
   {
     base_hero_->show_skill();

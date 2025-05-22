@@ -23,14 +23,20 @@ public:
 
 protected:
   person& person_;
-  explicit person_builder_base(person& person): person_{ person }{}
+  explicit person_builder_base(person& person) 
+    : person_{ person }
+  {
+  }
 };
 
 // 存储对象德实体
 class person_builder : public person_builder_base
 {
 public:
-  person_builder(): person_builder_base{person_}{}
+  person_builder() 
+    : person_builder_base{person_}
+  {
+  }
 
 protected:
   person person_;

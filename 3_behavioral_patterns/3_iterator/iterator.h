@@ -7,7 +7,10 @@ template<typename P>
 class base_iterator
 {
 public:
-  base_iterator(P* p) : data_point_(p){}
+  base_iterator(P* p) 
+    : data_point_(p)
+  {
+  }
 
   bool operator==(base_iterator that)
   {

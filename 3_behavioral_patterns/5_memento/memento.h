@@ -18,7 +18,8 @@ public:
 class simple_memento : public memento
 {
 public:
-  simple_memento(std::string state):state_(state)
+  simple_memento(std::string state)
+    : state_(state)
   {
     this->state_ = state;
     std::time_t now = std::time(0);
@@ -38,7 +39,8 @@ private:
 class originator
 {
 public:
-  originator() : state_( generate_random_string(30) ) 
+  originator() 
+    : state_(generate_random_string(30)) 
   {
     std::cout << "originator state is " << this->state_ << "\n";
   } 
@@ -77,7 +79,10 @@ private:
 class caretaker
 {
 public:
-  caretaker(std::shared_ptr<originator> originator) : originator_(originator) {}
+  caretaker(std::shared_ptr<originator> originator) 
+    : originator_(originator) 
+  {
+  }
 
   void backup()
   {

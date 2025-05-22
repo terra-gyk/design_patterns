@@ -17,8 +17,12 @@ struct journal
 {
   string title;
   vector<string> entries;
-  explicit journal(const std::string& title) : title{title} {}
-  void journal::add(const string& entry){entries.push_back(entry);}
+  explicit journal(const std::string& title) 
+    : title{title} 
+  {
+  }
+  
+  void add(const string& entry){ entries.push_back(entry); }
 };
 
 // PersistenceManager 的职责是将保存的条目写入文件，持久化存储
@@ -28,6 +32,8 @@ struct persistence_manager
   {
     ofstream ofs(filename);
     for (auto& s: j.entries)
+    {
       ofs << s << endl;
+    }
   }
 };

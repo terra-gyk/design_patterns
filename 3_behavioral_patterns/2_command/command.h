@@ -33,7 +33,11 @@ public:
 class command_a : public command
 {
 public:
-  command_a(std::shared_ptr<receiver_a> receiver, std::string some): receiver_(receiver),some_(some){} 
+  command_a(std::shared_ptr<receiver_a> receiver, std::string some)
+    : receiver_(receiver),
+      some_(some)
+  {
+  } 
 
   void execute() const override
   {
@@ -47,7 +51,12 @@ private:
 class command_b : public command
 {
 public:
-  command_b(std::shared_ptr<receiver_b> receiver, std::string some): receiver_(receiver),some_(some){} 
+  command_b(std::shared_ptr<receiver_b> receiver, std::string some)
+    : receiver_(receiver),
+      some_(some)
+  {
+  }
+   
   void execute() const override
   {
     receiver_->do_something(some_);

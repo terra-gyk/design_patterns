@@ -3,14 +3,12 @@
  * 客户端不应该被迫依赖于它们不使用的接口。
  */
 
-#include <iostream>
 #include <string>
 #include <vector>
 
 using std::string;
 using std::vector;
-using std::cout;
-using std::endl;
+
 
 class document;
 
@@ -33,19 +31,21 @@ struct i_scanner
   virtual void scan(vector<document*> docs) = 0;
 };
 
-// 通过继承来获取需要的方法
-struct i_machine : i_printer, i_scanner /* IFax and so on */
+
+struct i_fax 
 {  
+	virtual void fax(vector<document*> docs) = 0;
 };
 
-struct machine : i_machine
+// 通过继承来获取需要的方法
+struct machine : i_printer,i_scanner
 {
 	i_printer& printer;
 	i_scanner& scanner;
 	
-	machine(i_printer& printer, i_scanner& scanner)
+	machine(i_printer& printer, i_scanner& scanner)  
 		: printer{printer},
-		  scanner{scanner}
+		  scanner{scanner} 
 	{
 	}
 	

@@ -54,7 +54,11 @@ class context
 {
 public:
   using state_ptr = std::shared_ptr<state>;
-  context(state_ptr state) : state_(state){}
+  context(state_ptr state) 
+    : state_(state)
+  {
+  }
+  
   void trans_state_to(state_ptr state)
   {
     std::cout << "trans state to " << state->get_state() << "\n";

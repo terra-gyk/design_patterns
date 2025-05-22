@@ -9,7 +9,10 @@
 class t_exception : public std::exception 
 {
 public:
-  t_exception(const std::string& msg) : message(msg) {}
+  t_exception(const std::string& msg) 
+    : message(msg) 
+  {
+  }
 
   const char* what() const noexcept override 
   {
@@ -30,7 +33,11 @@ public:
 class employee : public compoent 
 {
 public:
-  employee(std::string name, std::string position):name_(name),position_(position){}
+  employee(std::string name, std::string position)
+    :name_(name),
+    position_(position)
+  {
+  }
 
   void add(std::shared_ptr<compoent> node) override 
   {
@@ -51,7 +58,10 @@ private:
 class organization_unit : public compoent
 {
 public:
-  organization_unit(std::string name) : name_(name){}
+  organization_unit(std::string name) 
+    : name_(name)
+  {
+  }
 
   void add(std::shared_ptr<compoent> node) override
   {

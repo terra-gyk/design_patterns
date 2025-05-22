@@ -78,7 +78,10 @@ public:
 class tools_adapter : public tools_b
 {
 public:
-  tools_adapter(tools_a a): tools_a_(a){}
+  tools_adapter(tools_a a)
+    : tools_a_(a)
+  {
+  }
 
   void get_tools_b()
   {

@@ -32,7 +32,11 @@ public:
 class shape
 {
 public:
-  shape(std::shared_ptr<color> color):color_impl_(color){}
+  shape(std::shared_ptr<color> color)
+    : color_impl_(color)
+  {
+  }
+
   virtual std::string smear_color() = 0; 
 
 protected:
@@ -42,7 +46,11 @@ protected:
 class shape_circle : public shape
 {
 public:
-  shape_circle(std::shared_ptr<color> color) : shape(color){}
+  shape_circle(std::shared_ptr<color> color) 
+    : shape(color)
+  {
+  }
+
   std::string smear_color() override
   {
     return "shape circle, " + color_impl_->get_color(); 
@@ -52,7 +60,11 @@ public:
 class shape_rectangle : public shape
 {
 public:
-  shape_rectangle(std::shared_ptr<color> color) : shape(color){}
+  shape_rectangle(std::shared_ptr<color> color) 
+    : shape(color)
+  {
+  }
+  
   std::string smear_color() override
   {
     return "shape rectangle, " + color_impl_->get_color(); 

@@ -6,10 +6,10 @@
 #include <mutex>
 
 class static_cpp11 {
- protected:
+protected:
   static_cpp11() {}
 
- public:
+public:
   static_cpp11(static_cpp11 const&) = delete;
   static_cpp11(static_cpp11&&) = delete;
   static_cpp11& operator=(static_cpp11 const&) = delete;
@@ -26,14 +26,12 @@ class static_cpp11 {
 
 };
 
-
 class double_check {
 private:
   static double_check* instance;
   static std::mutex mutex;
 
   double_check() {}
-
   double_check(const double_check&) = delete;
   double_check(double_check&&) = delete;
   double_check& operator=(const double_check&) = delete;
@@ -64,7 +62,7 @@ public:
   }
 };
 
-// 初始化静态成员变量
+// 静态成员应该放在 .cpp 文件中初始化，这里只是示例代码，不做强制要求
 double_check* double_check::instance = nullptr;
 std::mutex double_check::mutex;
 

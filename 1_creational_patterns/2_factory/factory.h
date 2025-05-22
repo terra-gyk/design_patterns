@@ -13,7 +13,6 @@ class creator
 public:
   using product_ptr = std::unique_ptr<product>;
 
-  ~creator() {}
   product_ptr create_product_a()
   {
     return std::make_unique<concrete_product_a>();

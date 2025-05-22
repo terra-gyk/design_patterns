@@ -21,8 +21,14 @@ class concrete_prototype_a : public prototype
 {
 public:
   concrete_prototype_a() = default;
-  concrete_prototype_a(const concrete_prototype_a* other):type_(other->type_){}
-  concrete_prototype_a(const concrete_prototype_a& other):type_(other.type_){}
+  concrete_prototype_a(const concrete_prototype_a* other)
+    : type_(other->type_)
+  {
+  }
+  concrete_prototype_a(const concrete_prototype_a& other)
+    : type_(other.type_)
+  {
+  }
 
   std::unique_ptr<prototype> clone() override
   {
@@ -40,13 +46,20 @@ class concrete_prototype_b : public prototype
 {
 public:
   concrete_prototype_b() = default;
-  concrete_prototype_b(const concrete_prototype_b* other):type_(other->type_){}
-  concrete_prototype_b(const concrete_prototype_b& other):type_(other.type_){}
+  concrete_prototype_b(const concrete_prototype_b* other)
+    : type_(other->type_)
+  {
+  }
+  concrete_prototype_b(const concrete_prototype_b& other)
+    : type_(other.type_)
+  {
+  }
 
   std::unique_ptr<prototype> clone() override
   {
     return std::make_unique<concrete_prototype_b>(this);
-  } 
+  }
+  
   std::string type() override
   {
     return type_;
@@ -60,30 +73,30 @@ class client
 public:
   void init()
   {
-    if( prototypes_.find("a") == prototypes_.end()) 
+    if( prototypes.find("a") == prototypes.end() ) 
     {
-      prototypes_.emplace("a",std::make_unique<concrete_prototype_a>());
+      prototypes.emplace("a",std::make_unique<concrete_prototype_a>());
     }
 
-    if( prototypes_.find("b") == prototypes_.end()) 
+    if( prototypes.find("b") == prototypes.end() ) 
     {
-      prototypes_.emplace("b",std::make_unique<concrete_prototype_b>());
+      prototypes.emplace("b",std::make_unique<concrete_prototype_b>());
     }
   }
 
   std::unique_ptr<prototype> get_prototype(std::string type)
   {
-    if( prototypes_.find(type) != prototypes_.end())
+    if( prototypes.find(type) != prototypes.end() )
     {
-      return prototypes_[type]->clone();
+      return prototypes[type]->clone();
     }
     return nullptr;
   }
 
 private:
-  static std::map<std::string, std::unique_ptr<prototype> >   prototypes_;
+  static std::map<std::string, std::unique_ptr<prototype>> prototypes;
 };
 
-std::map<std::string, std::unique_ptr<prototype> >   client::prototypes_ = {};
-
+// 静态成员应该放在 .cpp 文件中初始化，这里只是示例代码，不做强制要求
+std::map<std::string, std::unique_ptr<prototype>> client::prototypes = {};
 #endif // __PROTOTYPE_H__

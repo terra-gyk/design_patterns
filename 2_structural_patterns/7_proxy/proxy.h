@@ -6,9 +6,7 @@
 
 class subject 
 {
-public:
-  subject(){};
-  
+public:  
   virtual void request() = 0;
 };
 
@@ -29,7 +27,10 @@ public:
 class proxy : public subject
 {
 public:
-  proxy(std::shared_ptr<subject> subject) : real_subject_(subject){}
+  proxy(std::shared_ptr<subject> subject) 
+    : real_subject_(subject)
+  {
+  }
 
   void request() override
   {
